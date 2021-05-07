@@ -1,0 +1,107 @@
+---
+name: Release
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - main  # forward-compatibility with new GitHub default branch naming
+      - master  # backward-compatibility with old GitHub default branch naming
+  pull_request:
+    branches:
+      - main  # forward-compatibility with new GitHub default branch naming
+      - master  # backward-compatibility with old GitHub default branch naming
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2.3.3
+        with:
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2.2.1
+        with:
+          python-version: "3.9"
+
+      - name: Upgrade pip
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt pip
+          pip --version
+
+      - name: Install Poetry
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt poetry
+          poetry --version
+
+      - name: Check if there is a parent commit
+        id: check-parent-commit
+        run: |
+          echo "::set-output name=sha::$(git rev-parse --verify --quiet HEAD^)"
+
+      - name: Detect and tag new version
+        id: check-version
+        if: steps.check-parent-commit.outputs.sha
+        run: |
+          BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+          git checkout HEAD~
+          PARENT_COMMIT_VER=$(make get-project-version-number)
+          git checkout "${BRANCH_NAME}"
+          CURRENT_COMMIT_VER=$(make get-project-version-number)
+          if [[ "${PARENT_COMMIT_VER}" != "${CURRENT_COMMIT_VER}" ]]; then
+            echo "::set-output name=tag::${CURRENT_COMMIT_VER}"
+          fi
+
+      - name: Bump version for developmental release
+        if: "! steps.check-version.outputs.tag"
+        run: |
+          poetry version patch &&
+          VERSION=$(make get-project-version-number) &&
+          DEV_VERSION="${VERSION}.dev.$(date +%s)" &&
+          poetry version "${DEV_VERSION}"
+
+      - name: Build package
+        run: |
+          poetry build --ansi
+
+      - name: Publish package on PyPI
+        if: steps.check-version.outputs.tag
+        uses: pypa/gh-action-pypi-publish@v1.4.1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_TOKEN }} # pragma: allowlist secret
+
+      - name: Publish package on TestPyPI
+        if: "! steps.check-version.outputs.tag"
+        uses: pypa/gh-action-pypi-publish@v1.4.1
+        with:
+          user: __token__
+          password: ${{ secrets.TEST_PYPI_TOKEN }} # pragma: allowlist secret
+          repository_url: https://test.pypi.org/legacy/
+
+      # yamllint disable rule:line-length
+      - name: Validate published package is reachable
+        run: |
+          PYPI_PACKAGE="deep-learning-v2-pytorch==$(make get-project-version-number)"
+          TEST_PYPI_PACKAGE="${PYPI_PACKAGE} --index-url https://test.pypi.org/simple/"
+          function install_test_pypi() { pip install ${TEST_PYPI_PACKAGE} --no-deps && install_pypi; }
+          function install_pypi() { pip install --upgrade ${PYPI_PACKAGE}; }
+
+          until (install_test_pypi || install_pypi) &> /dev/null
+          do
+             echo "Waiting for Python Package Index to serve current package-under-test"
+             sleep 10
+          done
+          pip list -v
+        shell: bash
+      # yamllint enable rule:line-length
+
+      - name: Publish the release notes
+        uses: release-drafter/release-drafter@v5.13.0
+        with:
+          publish: ${{ steps.check-version.outputs.tag != '' }}
+          tag: ${{ steps.check-version.outputs.tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
