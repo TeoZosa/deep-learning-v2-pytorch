@@ -1,2 +1,3 @@
-pip==20.3.3
-poetry==1.1.4
+version https://git-lfs.github.com/spec/v1
+oid sha256:1ef1cd054b41a11bf3e2ff91a49af5bd8f92db1b12327258264f2b66ece48da6
+size 26
