@@ -143,18 +143,9 @@ test: clean update-dependencies generate-requirements
 	poetry run tox --parallel
 	$(MAKE) clean-requirements
 
-.PHONY: test-%-benchmark
-test-%-benchmark:
-	$(MAKE) tox-$*-benchmark
-
 .PHONY: test-%
 test-%:
 	$(MAKE) tox-$*,coverage
-
-.PHONY: test-mutations
-## Test against mutated code to validate test suite robustness
-test-mutations:
-	$(MAKE) tox-mutmut
 
 .PHONY: lint
 ## Run full static analysis suite for local development
@@ -194,11 +185,6 @@ docs-%:
 ## Launch live preview of ADR documentation
 docs-adl-preview:
 	poetry run log4brains preview
-
-.PHONY: test-docs
-## Test documentation format/syntax
-test-docs:
-	poetry run tox -e docs
 
 #################################################################################
 # Self Documenting Commands                                                     #

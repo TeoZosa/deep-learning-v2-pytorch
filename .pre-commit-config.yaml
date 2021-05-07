@@ -13,24 +13,6 @@ repos:
     hooks:
       - id: black
 
-  - repo: https://github.com/cruft/cruft
-    rev: 2.8.0
-    hooks:
-      - id: cruft
-        name: cruft
-        language: system
-        # Log status but always succeed, providing downstream project
-        # maintainers template synchronization discretion.
-        # see: https://stackoverflow.com/a/59745587
-        verbose: true
-        entry: bash -c 'cruft check || true' --
-
-  - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.1.0
-    hooks:
-      - id: detect-secrets
-        exclude: ^(poetry\.lock|\.cruft\.json)$
-
   - repo: https://github.com/flakehell/flakehell
     rev: v.0.8.0
     hooks:

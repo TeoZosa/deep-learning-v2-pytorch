@@ -30,8 +30,6 @@ clean:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: USAGE_PAGE := source/usage.md
 %: Makefile
-	@echo "# Usage" > "$(USAGE_PAGE)"
-	poetry run typer $(shell git rev-parse --show-toplevel)/deep_learning_v2_pytorch/main.py utils docs --name deep_learning_v2_pytorch | tail -n +2 >> "$(USAGE_PAGE)"
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 ifneq ($(filter html,$(MAKECMDGOALS)),)
 ifneq ($(shell command -v open),)
