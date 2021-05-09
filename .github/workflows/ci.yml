@@ -127,12 +127,12 @@ jobs:
       - name: Install dependencies
         run: |
           make provision_environment
-
-      - name: Install GNU Parallel
-        run: |
-          sudo apt-get update && \
-          sudo apt-get install -y --no-install-recommends \
-              parallel
+#
+#      - name: Install GNU Parallel
+#        run: |
+#          sudo apt-get update && \
+#          sudo apt-get install -y --no-install-recommends \
+#              parallel
 
       - name: Run tox targets for ${{ matrix.python-version }}
         run: |
