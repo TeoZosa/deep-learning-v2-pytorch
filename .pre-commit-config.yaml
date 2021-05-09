@@ -107,7 +107,7 @@ repos:
         description: "Run tox env `mypy` on a Jupyter Notebook"
         entry: .tox/precommit/bin/nbqa mypy
         # yamllint disable-line rule:line-length
-        args: [--cache-dir=/dev/null, --config-file=tox.ini, --nbqa-config=tox.ini]
+        args: [--cache-dir=/dev/null, --config-file=tox.ini]
         language: system
         types: [jupyter]
 
