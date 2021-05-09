@@ -51,13 +51,13 @@ repos:
     rev: 0.8.0
     hooks:
       - id: nbqa-black
-        args: [--nbqa-diff]
+        args: [--nbqa-mutate]
         additional_dependencies: [black==21.5b0]
       - id: nbqa-isort
-        args: [--nbqa-diff]
+        args: [--nbqa-mutate]
         additional_dependencies: [isort==5.8.0]
       - id: nbqa-pyupgrade
-        args: [--nbqa-diff]
+        args: [--nbqa-mutate]
         additional_dependencies: [pyupgrade==v2.14.0]
 
   - repo: local
