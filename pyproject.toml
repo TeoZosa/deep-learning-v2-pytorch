@@ -22,7 +22,7 @@ Changelog = "https://github.com/TeoZosa/deep-learning-v2-pytorch/releases"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-bokeh = "^2.3.1"
+bokeh = "^2.3.2"
 jupyter = "^1.0.0"
 keras = "^2.4.3"
 matplotlib = "^3.4.1"
