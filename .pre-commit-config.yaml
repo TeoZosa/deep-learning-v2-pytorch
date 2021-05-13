@@ -17,6 +17,7 @@ repos:
     rev: v.0.8.0
     hooks:
       - id: flakehell
+        exclude_types: [jupyter]
 
   # Docstring coverage tool
   - repo: https://github.com/econchick/interrogate
@@ -68,16 +69,6 @@ repos:
         entry: .tox/precommit/bin/nbqa bandit
         language: system
         types: [jupyter]
-
-#  - repo: local
-#    hooks:
-#      - id: nbqa-flakehell
-#        name: nbqa-flakehell
-#        description: "Run tox env `flakehell` on a Jupyter Notebook"
-#        entry: bash -c '.tox/precommit/bin/nbqa flakehell lint "$@"'
-#        language: system
-#        types: [jupyter]
-
 
   ### Override nbqa pre-packaged hooks to preempt spurious
   #   "Module not found" errors
