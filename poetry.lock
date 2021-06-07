@@ -1061,7 +1061,7 @@ test = ["check-manifest", "fastjsonschema", "testpath", "pytest", "pytest-cov"]
 
 [[package]]
 name = "nbqa"
-version = "0.10.0"
+version = "0.11.1"
 description = "Run any standard Python code quality tool on a Jupyter Notebook"
 category = "dev"
 optional = false
@@ -2371,7 +2371,7 @@ docs = ["importlib-metadata", "myst-parser", "pygments", "python-dotenv", "sphin
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "c92e0c885770ead01edc13d73914864963374e0fd8eaf63c4bd7ec512a6c21f9"
+content-hash = "53ac85bb5038b33fd458af95496b09892895355f3353d822b322b87131384aaa"
 
 [metadata.files]
 absl-py = [
@@ -3020,8 +3020,8 @@ nbformat = [
     {file = "nbformat-5.1.3.tar.gz", hash = "sha256:b516788ad70771c6250977c1374fcca6edebe6126fd2adb5a69aa5c2356fd1c8"},
 ]
 nbqa = [
-    {file = "nbqa-0.10.0-py3-none-any.whl", hash = "sha256:160b231a43503a2cb7a1711b5b278be921afe9a941f8ce57d98b42ac075a5fd2"},
-    {file = "nbqa-0.10.0.tar.gz", hash = "sha256:f1d0a70dacac54bf665d40bfb010f36f7e0279ba0e0f7f077bfaea9c0f9391b6"},
+    {file = "nbqa-0.11.1-py3-none-any.whl", hash = "sha256:580d46d59a50a12591993b692ddcb039aee1b9580cfd9d56d366cd9bb3fb5aa6"},
+    {file = "nbqa-0.11.1.tar.gz", hash = "sha256:b080da56ccb77200b7c0904d390e7b137e348a29052835c6384a11f67e80008d"},
 ]
 nest-asyncio = [
     {file = "nest_asyncio-1.5.1-py3-none-any.whl", hash = "sha256:76d6e972265063fe92a90b9cc4fb82616e07d586b346ed9d2c89a4187acea39c"},
