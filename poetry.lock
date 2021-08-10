@@ -791,21 +791,11 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "keras"
-version = "2.4.3"
-description = "Deep Learning for humans"
+version = "2.6.0"
+description = "TensorFlow Keras."
 category = "main"
 optional = false
 python-versions = "*"
-
-[package.dependencies]
-h5py = "*"
-numpy = ">=1.9.1"
-pyyaml = "*"
-scipy = ">=0.14"
-
-[package.extras]
-tests = ["pytest", "pytest-pep8", "pytest-xdist", "flaky", "pytest-cov", "pandas", "requests", "markdown"]
-visualize = ["pydot (>=1.2.4)"]
 
 [[package]]
 name = "keras-nightly"
@@ -2371,7 +2361,7 @@ docs = ["importlib-metadata", "myst-parser", "pygments", "python-dotenv", "sphin
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "b5cf3066b49611cf5ef0a0fdd78dc7bf620378f70f578fdce56a0a290e5b51d9"
+content-hash = "c6b7a0209d1d066af1910c62df1e83ac69a6fd1e4541563616bd8b60267719d6"
 
 [metadata.files]
 absl-py = [
@@ -2826,8 +2816,7 @@ jupyterlab-widgets = [
     {file = "jupyterlab_widgets-1.0.0.tar.gz", hash = "sha256:5c1a29a84d3069208cb506b10609175b249b6486d6b1cbae8fcde2a11584fb78"},
 ]
 keras = [
-    {file = "Keras-2.4.3-py2.py3-none-any.whl", hash = "sha256:05e2faf6885f7899482a7d18fc00ba9655fe2c9296a35ad96949a07a9c27d1bb"},
-    {file = "Keras-2.4.3.tar.gz", hash = "sha256:fedd729b52572fb108a98e3d97e1bac10a81d3917d2103cc20ab2a5f03beb973"},
+    {file = "keras-2.6.0-py2.py3-none-any.whl", hash = "sha256:504af5656a9829fe803ce48a8580ef16916e89906aceddad9e098614269437e7"},
 ]
 keras-nightly = [
     {file = "keras_nightly-2.5.0.dev2021032900-py2.py3-none-any.whl", hash = "sha256:6ba70f738f4008222de7e7fdd5b2b18c48c49b897a9fca54c844854e25964011"},
