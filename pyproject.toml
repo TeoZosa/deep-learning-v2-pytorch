@@ -71,7 +71,7 @@ mypy = "^0.812"
 pre-commit = "^2.13.0"
 
 # Documentation
-darglint = "^1.5.8"
+darglint = "^1.8.1"
 nodeenv = "^1.5.0" # ADR documentation Node dependency
 
 [tool.poetry.extras]
