@@ -38,7 +38,7 @@ tensorflow = "^2.5.0rc3"
 
 # Documentation
 importlib-metadata = "^4.5.0"
-myst-parser = { version = "^0.15.1", optional = true}
+myst-parser = { version = "^0.16.1", optional = true}
 pygments = { version = "^2.8.1", optional = true}
 python-dotenv = "^0.18.0"
 sphinx = { version = "^3.5.4", optional = true}
