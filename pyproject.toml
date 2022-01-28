@@ -53,7 +53,7 @@ nbqa = "^0.13.1"
 pytest = "^6.2.1"
 pytest-cov = "^2.12.1"
 pytest-emoji = "^0.2.0"
-pytest-mock = "^3.6.0"
+pytest-mock = "^3.7.0"
 pytest-sugar = "^0.9.4"
 pytest-xdist = "^2.3.0"
 xdoctest = {extras = ["all"], version = "^0.15.4"}
